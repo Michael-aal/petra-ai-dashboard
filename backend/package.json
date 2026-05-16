@@ -1,0 +1,25 @@
+{
+  "name": "petra-ai-dashboard-backend",
+  "version": "1.0.0",
+  "description": "AI Dashboard for Petra School Activities",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "ai",
+    "dashboard",
+    "school"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "sqlite3": "^5.1.6",
+    "openai": "^4.28.0"
+  },
+  "type": "commonjs"
+}
