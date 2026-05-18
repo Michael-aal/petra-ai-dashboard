@@ -1,0 +1,41 @@
+**Package.json Content for Backend**
+
+Copy this exact content into a file named "package.json" in the backend directory:
+
+```json
+{
+  "name": "petra-ai-dashboard-backend",
+  "version": "1.0.0",
+  "description": "AI Dashboard for Petra School Activities",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["ai", "dashboard", "school"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  }
+}
+```
+
+**How to create this file:**
+
+Option 1 - Using npm init:
+```bash
+cd backend
+npm init -y
+npm install express cors dotenv
+```
+
+Option 2 - Manual creation:
+1. Create a text file named "package.json" in the backend folder
+2. Copy and paste the JSON content above
+3. Save the file
+4. Run: npm install
+
+Then start the server with: npm start

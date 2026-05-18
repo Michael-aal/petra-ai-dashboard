@@ -1,0 +1,17 @@
+{
+  "name": "petra-ai-dashboard",
+  "version": "1.0.0",
+  "description": "AI-powered dashboard for Petra School",
+  "private": true,
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "install-all": "npm install && cd backend && npm install"
+  },
+  "keywords": ["ai", "dashboard", "school"],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "18.x"
+  }
+}

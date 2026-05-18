@@ -1,0 +1,12 @@
+.git
+.gitignore
+README.md
+*.db
+*.log
+.env.local
+.DS_Store
+netlify.toml
+Procfile
+deploy.sh
+deploy.bat
+*.md
