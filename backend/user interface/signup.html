@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="signup.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up page</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign up</h1>
+        <form action="/signup" method="post">
+            <input type="text" id="username" name="username" placeholder="Username" required><br><br>
+
+            <input type="email" id="email" name="email" placeholder="Email" required><br><br>
+
+            <input type="password" id="password" name="password" placeholder="Password" required><br><br>
+
+            <button class="signup-btn" type="submit">Sign Up</button>
+            <p>if you already have an account, <a href="/login">log in</a></p>
+
+            <a class="google">
+            <button class="google-btn" >
+                    <img src="data:image/jpeg;base64,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" alt="Google Logo" class="google-logo">
+                    Sign up with Google
+            </button>
+            </a>
+        </form>
+    </div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+
+document.querySelector('.google-btn').addEventListener('click', () => {
+
+    google.accounts.id.initialize({
+        client_id: "YOUR_GOOGLE_CLIENT_ID",
+        callback: handleCredentialResponse
+    });
+
+    google.accounts.id.prompt();
+
+});
+
+function handleCredentialResponse(response) {
+
+    const jwt = response.credential;
+
+    fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${jwt}`)
+        .then(res => res.json())
+        .then(userInfo => {
+
+            console.log(userInfo);
+
+            document.getElementById("email").value =
+                userInfo.email;
+
+            document.getElementById("username").value =
+                userInfo.name;
+
+        });
+
+}
+    </script>
+</body>
+</html>

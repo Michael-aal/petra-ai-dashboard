@@ -265,3 +265,8 @@ function setupModals() {
   // Modal for adding announcements (future feature)
   // Modal for school info (future feature)
 }
+
+
+fetch("https://backend.vercel.app/api")
+  .then(res => res.json())
+  .then(data => console.log(data));

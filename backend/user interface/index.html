@@ -1,160 +1,795 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://kit.fontawesome.com/4d39e4a0f3.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solid ai dashboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Petra School OTA Chatbot</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#0A192F;
+      color:#F8FAFC;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      width:500px;
+      height:500px;
+      background: #1d3b95;
+      filter:blur(180px);
+      top:-150px;
+      left:-150px;
+      opacity:.3;
+      z-index:-1;
+    }
+
+    body::after{
+      content:'';
+      position:fixed;
+      width:400px;
+      height:400px;
+      background:#38BDF8;
+      filter:blur(180px);
+      bottom:-150px;
+      right:-150px;
+      opacity:.2;
+      z-index:-1;
+    }
+
+    section{
+      padding:100px 8%;
+      position:relative;
+    }
+
+    h1,h2,h3{
+      line-height:1.2;
+    }
+
+    p{
+      color:#94A3B8;
+      line-height:1.7;
+    }
+
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:25px 8%;
+      position:sticky;
+      top:0;
+      backdrop-filter:blur(12px);
+      background:rgba(10,25,47,0.6);
+      z-index:100;
+    }
+
+    .logo{
+      font-size:1.5rem;
+      font-weight:700;
+      color:#38BDF8;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:30px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#F8FAFC;
+      transition:.3s;
+    }
+
+    .nav-links a:hover{
+      color:#38BDF8;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      gap:60px;
+      min-height:100vh;
+    }
+
+    .hero h1{
+      font-size:4rem;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:1.1rem;
+      margin-bottom:35px;
+      max-width:600px;
+    }
+
+    .btn-group{
+      display:flex;
+      gap:20px;
+    }
+
+    .btn{
+      padding:15px 30px;
+      border-radius:14px;
+      border:none;
+      cursor:pointer;
+      font-weight:600;
+      transition:.4s;
+      text-decoration:none;
+    }
+
+    .primary-btn{
+      background:#2563EB;
+      color:white;
+      box-shadow:0 0 25px rgba(37,99,235,.5);
+    }
+
+    .primary-btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 0 40px rgba(37,99,235,.8);
+    }
+
+    .secondary-btn{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      color:white;
+      backdrop-filter:blur(10px);
+    }
+
+    .secondary-btn:hover{
+      background:rgba(255,255,255,.1);
+    }
+
+    .glass{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(15px);
+      border-radius:24px;
+      box-shadow:0 10px 30px rgba(0,0,0,.3);
+    }
+
+    .chat-preview{
+      padding:30px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .chat-header{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:30px;
+    }
+
+    .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:#38BDF8;
+      box-shadow:0 0 20px #38BDF8;
+    }
+
+    .message{
+      padding:16px;
+      border-radius:16px;
+      margin-bottom:20px;
+      width:fit-content;
+      max-width:80%;
+    }
+
+    .user{
+      background:#2563EB;
+      margin-left:auto;
+    }
+
+    .bot{
+      background:rgba(255,255,255,.08);
+    }
+
+    .typing{
+      display:flex;
+      gap:6px;
+      padding:15px;
+    }
+
+    .typing span{
+      width:8px;
+      height:8px;
+      background:#38BDF8;
+      border-radius:50%;
+      animation:blink 1s infinite;
+    }
+
+    .typing span:nth-child(2){
+      animation-delay:.2s;
+    }
+
+    .typing span:nth-child(3){
+      animation-delay:.4s;
+    }
+
+    @keyframes blink{
+      0%,100%{opacity:.3}
+      50%{opacity:1}
+    }
+
+    .metrics{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:30px;
+    }
+
+    .metric-card{
+      padding:40px;
+      text-align:center;
+      transition:.4s;
+    }
+
+    .metric-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .metric-card h2{
+      font-size:2.5rem;
+      color:#38BDF8;
+      margin-bottom:10px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:3rem;
+      margin-bottom:15px;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:30px;
+    }
+
+    .feature-card{
+      padding:35px;
+      transition:.4s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .feature-card:hover{
+      transform:translateY(-10px);
+      border-color:#38BDF8;
+      box-shadow:0 0 30px rgba(56,189,248,.2);
+    }
+
+    .icon{
+      width:60px;
+      height:60px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(37,99,235,.2);
+      color:#38BDF8;
+      font-size:1.5rem;
+      margin-bottom:20px;
+      box-shadow:0 0 25px rgba(56,189,248,.3);
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:30px;
+    }
+
+    .step-card{
+      text-align:center;
+      padding:40px;
+      position:relative;
+    }
+
+    .step-number{
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      background:#2563EB;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin:auto;
+      margin-bottom:20px;
+      font-weight:700;
+      box-shadow:0 0 30px rgba(37,99,235,.5);
+    }
+
+    .testimonials{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:30px;
+    }
+
+    .testimonial{
+      padding:35px;
+      transition:.4s;
+    }
+
+    .testimonial:hover{
+      transform:translateY(-10px);
+    }
+
+    .avatar{
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      background:#2563EB;
+      margin-bottom:20px;
+    }
+
+    .pricing{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:30px;
+    }
+
+    .price-card{
+      padding:45px;
+      text-align:center;
+      transition:.4s;
+    }
+
+    .price-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .featured{
+      border:1px solid #38BDF8;
+      box-shadow:0 0 40px rgba(56,189,248,.2);
+      transform:scale(1.05);
+    }
+
+    .price{
+      font-size:3rem;
+      color:#38BDF8;
+      margin:20px 0;
+    }
+
+    .cta{
+      text-align:center;
+      padding:120px 8%;
+    }
+
+    .cta h2{
+      font-size:3.5rem;
+      margin-bottom:25px;
+    }
+
+    footer{
+      padding:60px 8%;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-content{
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:30px;
+    }
+
+    .socials{
+      display:flex;
+      gap:15px;
+      margin-top:20px;
+    }
+
+    .social{
+      width:45px;
+      height:45px;
+      border-radius:12px;
+      background:rgba(255,255,255,.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:.3s;
+    }
+
+    .social:hover{
+      background:#2563EB;
+      transform:translateY(-5px);
+    }
+
+    .particles{
+      position:absolute;
+      width:100%;
+      height:100%;
+      top:0;
+      left:0;
+      overflow:hidden;
+      z-index:-1;
+    }
+
+    .particle{
+      position:absolute;
+      width:5px;
+      height:5px;
+      background:#38BDF8;
+      border-radius:50%;
+      animation:float 12s infinite linear;
+      opacity:.5;
+    }
+
+    @keyframes float{
+      from{
+        transform:translateY(100vh);
+      }
+      to{
+        transform:translateY(-100vh);
+      }
+    }
+
+    @media(max-width:992px){
+
+      .hero,
+      .features,
+      .metrics,
+      .steps,
+      .testimonials,
+      .pricing{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        text-align:center;
+      }
+
+      .hero h1{
+        font-size:3rem;
+      }
+
+      .btn-group{
+        justify-content:center;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .featured{
+        transform:none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
 
+<div class="particles"></div>
 
-        <!-- SECTION1 -->
-<header class="header">
-    
-    <nav class="menu">
+<nav class="navbar">
+  <div class="logo">Petra OTA</div>
 
- <!-- PROFILE SECTION -->
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#">Pricing</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
 
-      <div class="profile_section">
-        <div class="set1">
-        
-        <div class="profile_img">
-        <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/how_to_become_A_programmer.jpg" alt="Profile Picture" class="profile_picture">
-      <div class="active_logo">
+<section class="hero">
 
-   </div>
-        </div>
+  <div>
+    <h1>AI-Powered School Assistant for Smarter Communication</h1>
 
-      <div class="text">
-  <span class="profile_name">Augustine Michael</span>
-  <div class="state">Online</div>
-      </div>
+    <p>
+      Petra School OTA Chatbot helps students, parents, and staff get instant answers anytime.
+    </p>
 
-      <div class="arrow_down">
-        <i class="fa-solid fa-angle-down"></i>
+    <div class="btn-group">
+      <a href="../signup.html" class="btn primary-btn" target="_blank" >Get Started</a>
+      <!-- <a href="#" class="btn secondary-btn">Watch Demo</a> -->
     </div>
-</div>
+  </div>
 
-
-    <div class="closebtns">
-        <i class="fa-solid fa-xmark"></i>
+  <div class="glass chat-preview">
+    <div class="chat-header">
+      <div class="dot"></div>
+      <h3>Petra AI Assistant</h3>
     </div>
 
+    <div class="message user">
+      When is the next exam?
+    </div>
 
-        </div>
+    <div class="message bot">
+      The next examination starts on Monday, 12th June at 9:00 AM.
+    </div>
 
+    <div class="typing">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
 
+</section>
 
-      <!-- LIST-SECTION -->
+<section>
+
+  <div class="metrics">
+
+    <div class="glass metric-card">
+      <h2>24/7</h2>
+      <p>Support Available</p>
+    </div>
+
+    <div class="glass metric-card">
+      <h2>98%</h2>
+      <p>Response Accuracy</p>
+    </div>
+
+    <div class="glass metric-card">
+      <h2>10k+</h2>
+      <p>Messages Handled</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="section-title" id="features">
+    <h2>Powerful Features</h2>
+    <p>Everything your school needs in one AI system.</p>
+  </div>
+
+  <div class="features">
+
+    <div class="glass feature-card">
+      <div class="icon">🎓</div>
+      <h3>Instant Student Support</h3>
+      <p>Students receive instant answers anytime.</p>
+    </div>
+
+    <div class="glass feature-card">
+      <div class="icon">🤖</div>
+      <h3>Smart AI Responses</h3>
+      <p>AI understands and responds intelligently.</p>
+    </div>
+
+    <div class="glass feature-card">
+      <div class="icon">👨‍👩‍👧</div>
+      <h3>Parent Communication</h3>
+      <p>Keep parents informed automatically.</p>
+    </div>
+
+    <div class="glass feature-card">
+      <div class="icon">📄</div>
+      <h3>Admission Assistance</h3>
+      <p>Automated admission and enquiry system.</p>
+    </div>
+
+    <div class="glass feature-card">
+      <div class="icon">🔔</div>
+      <h3>School Notifications</h3>
+      <p>Send updates instantly to everyone.</p>
+    </div>
+
+    <div class="glass feature-card">
+      <div class="icon">🌍</div>
+      <h3>Multilingual Chat</h3>
+      <p>Supports multiple languages seamlessly.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="section-title">
+    <h2>How It Works</h2>
+  </div>
+
+  <div class="steps">
+
+    <div class="glass step-card">
+      <div class="step-number">1</div>
+      <h3>Ask Questions</h3>
+      <p>Students or parents ask anything instantly.</p>
+    </div>
+
+    <div class="glass step-card">
+      <div class="step-number">2</div>
+      <h3>AI Understands</h3>
+      <p>Smart AI processes the request intelligently.</p>
+    </div>
+
+    <div class="glass step-card">
+      <div class="step-number">3</div>
+      <h3>Instant Answers</h3>
+      <p>Fast accurate responses delivered immediately.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="section-title">
+    <h2>Testimonials</h2>
+  </div>
  
-      <div class="list_section">
-       <li class="ls home">
-        <div class="home_logo">
-            <i class="fa-regular fa-house" id="list-logo"></i>
-        </div>
-        <a href="#">Home</a>
-       </li>
+  <div class="testimonials" id="testimonials">
 
-       <li class=" ls my-task">
-        <div class="task_logo">
-            <i class="fa-solid fa-list-check" id="list-logo"></i>
-        </div>
-        <a href="#">My Task</a>
-       </li>
-
-       <li class="ls settings">
-        <div class="settings_logo">
-            <i class="fa-solid fa-gear" id="list-logo"></i>
-        </div>
-        <a href="#">Settings</a>
-        <div class="drop_settings">
-            <div class="settings_lists">
-                <li class="item theme">
-                    <div class="St text">Theme</div>
-                    <div class="toggle">
-                        <button class=" togglebtn dark"></button>
-                        <button class="togglebtn light"></button>
-                    </div>
-                </li>
-
-                <li class="item logout">
-                    <div class="St text">Logout</div>
-                    <div class="toggle">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    </div>
-                </li>
-     
-       </li>
-     </div>
-
-
-<!-- PROJECT SECTION -->
-
-      <div class="project_section">
-<div class="my_projects">My Projects</div>
-    <div class="all_projects">
-        <li class="projects">Economics</li>
-        <li class="projects">Critical Thinking</li>
-        <li class="projects">Web Development</li>
-        <li class="projects">Data Science</li>
-        <li class="projects">Biology</li>
-        <li class="projects">Physics
-        </li>
+    <div class="glass testimonial">
+      <div class="avatar"></div>
+      <p>
+        “This AI chatbot improved communication in our school dramatically.”
+      </p>
+      <br>
+      <h4>Student</h4>
     </div>
 
+    <div class="glass testimonial">
+      <div class="avatar"></div>
+      <p>
+        “Parents now get answers instantly without waiting.”
+      </p>
+      <br>
+      <h4>Parent</h4>
+    </div>
+
+    <div class="glass testimonial">
+      <div class="avatar"></div>
+      <p>
+        “The automation reduced repetitive work for staff.”
+      </p>
+      <br>
+      <h4>Teacher</h4>
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="section-title">
+    <h2>Pricing Plans</h2>
+  </div>
+
+  <div class="pricing">
+
+    <div class="glass price-card">
+      <h3>Starter</h3>
+      <div class="price">$19</div>
+      <p>Basic chatbot features for small schools.</p>
+      <br>
+      <a href="#" class="btn secondary-btn">Choose Plan</a>
+    </div>
+
+    <div class="glass price-card featured">
+      <h3>Professional</h3>
+      <div class="price">$49</div>
+      <p>Advanced AI automation for growing schools.</p>
+      <br>
+      <a href="#" class="btn primary-btn">Choose Plan</a>
+    </div>
+
+    <div class="glass price-card">
+      <h3>Enterprise</h3>
+      <div class="price">$99</div>
+      <p>Full AI infrastructure for large institutions.</p>
+      <br>
+      <a href="#" class="btn secondary-btn">Choose Plan</a>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="cta">
+
+  <h2>Transform Your School Communication with AI</h2>
+
+  <br>
+
+  <a href="#" class="btn primary-btn">
+    Start Using Petra OTA
+  </a>
+
+</section>
+
+<footer>
+
+  <div class="footer-content">
+
+    <div>
+      <h3>Petra School OTA</h3>
+      <p>Modern AI chatbot platform for schools.</p>
+
+      <div class="socials">
+        <div class="social">F</div>
+        <div class="social">X</div>
+        <div class="social">I</div>
       </div>
-      
- <!-- PREMIUM -->
-      <div class="premium">
-        <div class="premium_logo">
-            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Premium Logo" class="premium_img">
-        </div>
-        <div class="premium_text">Go Premium</div>
-      </div>
-    
-      
-    </nav>
-</header>
-
-
-<!-- SECTION2 -->
-
-<div class="main_section">
-    <div class="hamburger">
-        <i class="fa-solid fa-bars"></i>
-    </div>
-     <div class="chat_area">
-        <div class="greetings">
-            Hello <span class="name">michael</span> , How are you doing?
-        </div>
-<div class="ai_response"></div>
-<div class="user_response"></div>
-</div>
-
-     <div class="chat_box">
-        <div class="set">
-                   <div class="pin_logo">
-        <i class="fa-solid fa-plus"></i>
-       </div>
-
-       <div class="input">
-        <input type="text" placeholder="message...">
-       </div>
-        </div>
-
-
-       <button class="send">
-        <i class="fa-solid fa-arrow-up"></i>
-       </button>
-
-     </div>
     </div>
 
+    <div>
+      <h4>Quick Links</h4>
+      <br>
+      <p>Features</p>
+      <p>Pricing</p>
+      <p>Contact</p>
     </div>
 
-    <script src="script.js"></script>
+  </div>
+
+  <br><br>
+
+  <p>© 2026 Petra School OTA. All rights reserved.</p>
+
+</footer>
+
+<script>
+
+  const particlesContainer = document.querySelector('.particles');
+
+  for(let i = 0; i < 40; i++){
+
+    const particle = document.createElement('div');
+
+    particle.classList.add('particle');
+
+    particle.style.left = Math.random() * 100 + 'vw';
+
+    particle.style.animationDuration =
+      Math.random() * 10 + 10 + 's';
+
+    particle.style.opacity = Math.random();
+
+    particle.style.width =
+      particle.style.height =
+      Math.random() * 4 + 2 + 'px';
+
+    particlesContainer.appendChild(particle);
+  }
+
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  });
+
+  document.querySelectorAll('.glass').forEach((el)=>{
+    el.style.opacity = 0;
+    el.style.transform = "translateY(40px)";
+    el.style.transition = "all 1s ease";
+
+    observer.observe(el);
+  });
+
+</script>
+
 </body>
 </html>

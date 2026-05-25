@@ -1,0 +1,172 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: var(--color-primary-900);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+
+:root {
+  /* Primary (Modern SaaS Blue) */
+  --color-primary-50:  #f0f7ff;
+  --color-primary-100: #ddeeff;
+  --color-primary-200: #c1dfff;
+  --color-primary-300: #99c7ff;
+  --color-primary-400: #6ba3ff;
+  --color-primary-500: #3b7bff;  /* main brand blue */
+  --color-primary-600: #2d5fdb;
+  --color-primary-700: #2449b8;
+  --color-primary-800: #1d3b95;
+  --color-primary-900: #162c7a;
+
+  /* Accent (Professional Teal) */
+  --color-accent-50:  #f0fdf9;
+  --color-accent-100: #d4fce9;
+  --color-accent-500: #10b981;
+  --color-accent-600: #0d8a6e;
+
+  /* Neutral (Professional Grays) */
+  --color-white: #ffffff;
+  --color-black: #050b14;
+
+  --color-gray-50:  #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Semantic colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error:   #ef4444;
+  --color-info:    var(--color-primary-500);
+
+  /* Backgrounds */
+  --bg-body: var(--color-gray-50);
+  --bg-surface: var(--color-white);
+  --bg-muted: var(--color-gray-100);
+
+  /* Text */
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-600);
+  --text-inverse: var(--color-white);
+
+  /* Border */
+  --border-light: var(--color-gray-200);
+  --border-default: var(--color-gray-300);
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 10px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+@media (max-width: 1300px) {
+
+
+.container {
+    background-color: transparent;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 5px;
+    
+
+    
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    padding: 10px;
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: transparent;
+    color: white;
+}
+
+
+input:focus{
+outline: none;
+}  
+
+.signup-btn {
+    padding: 10px;
+    background: linear-gradient(to right, var(--color-primary-600), var(--color-accent-600));
+    color: var(--text-inverse);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 4s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(to right, var(--color-primary-700), var(--color-accent-500));
+
+}
+
+@media(max-width: 500px){
+    .container {
+        width: 90%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    form {
+        width: 100%;
+    }
+}
+}
+
+p {
+    font-size: 12px;
+    color: whitesmoke;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+img{
+    width: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+
+}
+
+.google-btn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+}
